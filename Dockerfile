@@ -7,4 +7,7 @@ RUN apt-get update -qq \
     && apt-get -qq autoremove \
     && apt-get -qq clean
 
-WORKDIR /home/
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
