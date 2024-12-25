@@ -6,4 +6,4 @@ if [ -z "$USERNAME" ]; then
     exit 1
 fi
 
-adduser $USERNAME
+adduser $USERNAME --home /home
