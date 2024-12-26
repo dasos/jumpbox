@@ -6,20 +6,19 @@ if [ -z "$USERNAME" ]; then
     exit 1
 fi
 
+echo "Deleting all host keys"
+rm /etc/ssh/ssh_host_*
+echo "Copying over provided keys"
+cp /keys/* /etc/ssh/
+
 echo "Adding $USERNAME"
 
+# Delete the OOTB user
 deluser ubuntu
 
-generate_password() {
-    # Generate a random password with a length of 12 characters
-    # You can adjust the length and character set as needed
-    tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 12
-    echo
-}
-PASSWORD=$(generate_password)
-
+# Disabling password, since we'll auth with ssh key
 adduser $USERNAME --gecos "" --disabled-password --uid 1000 --home /home
-chown $USERNAME:$USERNAME /home
+chown $USERNAME /home
 #echo "$USERNAME:$PASSWORD" | chpasswd
 
 # Output the username and password
