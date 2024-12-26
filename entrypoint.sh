@@ -7,7 +7,11 @@ if [ -z "$USERNAME" ]; then
 fi
 
 echo "Adding $USERNAME"
-adduser $USERNAME --home /home
+adduser $USERNAME --gecos "" --disabled-password --home /home
+echo "$USERNAME:$PASSWORD" | chpasswd
+
+# Output the username and password
+echo "User '$USERNAME' created with password: $PASSWORD"
 
 echo "Running forever"
 tail -f /dev/null
