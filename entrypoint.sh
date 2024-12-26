@@ -16,12 +16,15 @@ generate_password() {
 }
 PASSWORD=$(generate_password)
 
-adduser $USERNAME --gecos "" --disabled-password --home /home
+adduser $USERNAME --gecos "" --disabled-password --uid 1000 --home /home
 chown $USERNAME:$USERNAME /home
-echo "$USERNAME:$PASSWORD" | chpasswd
+#echo "$USERNAME:$PASSWORD" | chpasswd
 
 # Output the username and password
 echo "User '$USERNAME' created with password: $PASSWORD"
+
+echo "Starting SSH"
+service ssh start
 
 echo "Running forever"
 tail -f /dev/null
