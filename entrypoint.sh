@@ -6,4 +6,8 @@ if [ -z "$USERNAME" ]; then
     exit 1
 fi
 
+echo "Adding $USERNAME"
 adduser $USERNAME --home /home
+
+echo "Running forever"
+tail -f /dev/null
