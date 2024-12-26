@@ -1,12 +1,20 @@
 FROM ubuntu
 
+# First unminimize
 RUN apt-get update -qq \
     && apt-get -y upgrade \
-    && apt-get -y --no-install-recommends install unminimize openssh-server \
-    && rm -rf /var/lib/apt/lists/* \
+    && apt-get -y --no-install-recommends install unminimize \
+    && yes | unminimize
+
+# Then install some other packages
+RUN apt-get update -qq \
+    && apt-get -y upgrade \
+    && apt-get -y --no-install-recommends install openssh-server curl nano
+
+# Clean up to minimise the image size
+RUN rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
-RUN yes | unminimize
 
 RUN mkdir -p /home
 
