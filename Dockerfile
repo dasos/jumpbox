@@ -2,8 +2,8 @@ FROM ubuntu
 
 RUN apt-get update -qq \
     && apt-get -y upgrade \
-    && apt-get -y --no-install-recommends install unminimize openssh-server
-RUN rm -rf /var/lib/apt/lists/* \
+    && apt-get -y --no-install-recommends install unminimize openssh-server \
+    && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
 RUN yes | unminimize
