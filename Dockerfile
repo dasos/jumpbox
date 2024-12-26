@@ -5,7 +5,7 @@ RUN apt-get update -qq \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install unminimize openssh-server \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
-    && apt-get -qq clean
+    && apt-get -qq clean \
     && yes | /usr/local/sbin/unminimize
 
 RUN mkdir -p /home
