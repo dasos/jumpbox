@@ -16,13 +16,16 @@ echo "Adding $USERNAME"
 # Delete the OOTB user
 deluser ubuntu
 
-# Disabling password, since we'll auth with ssh key
+# No password, since we'll auth with ssh key
 adduser $USERNAME --gecos "" --disabled-password --uid 1000 --home /home
 chown $USERNAME /home
 #echo "$USERNAME:$PASSWORD" | chpasswd
 
-# Output the username and password
-echo "User '$USERNAME' created with password: $PASSWORD"
+# Securing SSH
+echo "Updating SSH config file"
+sed -i 's/^#\?PasswordAuthentication yes/PasswordAuthentication no/' "/etc/ssh/sshd_config"
+sed -i 's/^#\?PermitRootLogin yes/PermitRootLogin no/' "/etc/ssh/sshd_config"
+
 
 echo "Starting SSH"
 service ssh start
