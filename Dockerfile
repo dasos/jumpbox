@@ -6,7 +6,7 @@ RUN apt-get update -qq \
 RUN rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
-RUN yes | /usr/local/sbin/unminimize
+RUN yes | unminimize
 
 RUN mkdir -p /home
 
