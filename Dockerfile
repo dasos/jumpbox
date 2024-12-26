@@ -2,10 +2,11 @@ FROM ubuntu
 
 RUN apt-get update -qq \
     && apt-get -y upgrade \
-    && apt-get -y --no-install-recommends install curl openssh-server \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install unminimize openssh-server \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq autoremove \
     && apt-get -qq clean
+    && yes | /usr/local/sbin/unminimize
 
 RUN mkdir -p /home
 
