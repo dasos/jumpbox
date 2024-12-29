@@ -26,9 +26,25 @@ echo "Updating SSH config file"
 sed -i 's/^#\?PasswordAuthentication yes/PasswordAuthentication no/' "/etc/ssh/sshd_config"
 sed -i 's/^#\?PermitRootLogin yes/PermitRootLogin no/' "/etc/ssh/sshd_config"
 
-
 echo "Starting SSH"
 service ssh start
+
+FILE="/usr/local/bin/install_script.sh"
+
+# Check if the file exists
+if [ -f "$FILE" ]; then
+    echo "$FILE exists."
+
+    # Change the file permissions to make it executable
+    chmod +x "$FILE"
+    echo "Changed permissions to make $FILE executable."
+
+    # Run the file
+    "$FILE"
+else
+    echo "$FILE does not exist."
+fi
+
 
 echo "Running forever"
 tail -f /dev/null
