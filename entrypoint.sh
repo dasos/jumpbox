@@ -28,7 +28,7 @@ sed -i 's/^#\?PermitRootLogin yes/PermitRootLogin no/' "/etc/ssh/sshd_config"
 
 # Allowing no password sudo
 echo "Updating sudoers"
-echo "$USER ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
+echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
 
 echo "Starting SSH"
 service ssh start
