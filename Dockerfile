@@ -9,7 +9,7 @@ RUN apt-get update -qq \
 # Then install some other packages
 RUN apt-get update -qq \
     && apt-get -y upgrade \
-    && apt-get -y --no-install-recommends install openssh-server curl nano
+    && apt-get -y --no-install-recommends install openssh-server curl nano sudo
 
 # Clean up to minimise the image size
 RUN rm -rf /var/lib/apt/lists/* \
