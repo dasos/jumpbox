@@ -26,6 +26,10 @@ echo "Updating SSH config file"
 sed -i 's/^#\?PasswordAuthentication yes/PasswordAuthentication no/' "/etc/ssh/sshd_config"
 sed -i 's/^#\?PermitRootLogin yes/PermitRootLogin no/' "/etc/ssh/sshd_config"
 
+# Allowing no password sudo
+echo "Updating sudoers"
+echo "$USER ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers
+
 echo "Starting SSH"
 service ssh start
 
