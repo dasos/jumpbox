@@ -30,17 +30,19 @@ echo "Starting SSH"
 service ssh start
 
 FILE="/usr/local/bin/install_script.sh"
+FILE_CP="/usr/local/bin/install_script_cp.sh"
 
 # Check if the file exists
 if [ -f "$FILE" ]; then
     echo "$FILE exists."
 
+    cp "$FILE" "$FILE_CP"
     # Change the file permissions to make it executable
-    chmod +x "$FILE"
+    chmod +x "$FILE_CP"
     echo "Changed permissions to make $FILE executable."
 
     # Run the file
-    "$FILE"
+    ./"$FILE_CP"
 else
     echo "$FILE does not exist."
 fi
