@@ -9,7 +9,7 @@ RUN apt-get update -qq \
 # Then install some other packages
 RUN apt-get update -qq \
     && apt-get -y upgrade \
-    && apt-get -y --no-install-recommends install openssh-server curl nano sudo iputils-ping net-tools bash-completion python3
+    && apt-get -y --no-install-recommends install openssh-server curl jq nano sudo iputils-ping net-tools bash-completion python3
 
 # Clean up to minimise the image size
 RUN rm -rf /var/lib/apt/lists/* \
